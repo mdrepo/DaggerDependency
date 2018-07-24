@@ -3,9 +3,6 @@ package com.minx.daggerapp.di.module
 import android.app.Application
 import android.content.Context
 import android.content.SharedPreferences
-import com.minx.daggerapp.MainActivity
-import com.minx.daggerapp.di.qualifiers.ApplicationContext
-import com.minx.daggerapp.di.qualifiers.DatabaseInfo
 import dagger.Module
 import dagger.Provides
 
@@ -23,7 +20,6 @@ import dagger.Provides
 @Module
 internal class ApplicationModule(private val mApplication: Application) {
     @Provides
-    @ApplicationContext
     internal fun provideContext(): Context {
         return mApplication
     }
@@ -34,13 +30,11 @@ internal class ApplicationModule(private val mApplication: Application) {
     }
 
     @Provides
-    @DatabaseInfo
     internal fun provideDatabaseName(): String {
         return "demo-dagger.db"
     }
 
     @Provides
-    @DatabaseInfo
     internal fun provideDatabaseVersion(): Int {
         return 2
     }

@@ -1,7 +1,7 @@
 package com.minx.daggerapp.di.component
 
 import com.minx.daggerapp.DIApp
-import com.minx.daggerapp.di.module.ActivityModule
+import com.minx.daggerapp.di.module.ActivityFactoryModule
 import com.minx.daggerapp.di.module.ApplicationModule
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -11,7 +11,7 @@ import javax.inject.Singleton
 
 /**
  * Created by Mayur on 13/3/18.
- * Dagger builds the dependency graph using the component classes
+ * Dagger builds the dependency graph using the component classes. Wires every thing together
  *
  * This is like the xml file from Spring
  *
@@ -19,15 +19,16 @@ import javax.inject.Singleton
  * provided by Application Module
  */
 @Singleton
-@Component(modules = arrayOf(AndroidInjectionModule::class,
+@Component(modules = arrayOf(
         ApplicationModule::class,
-        ActivityModule::class))
+        ActivityFactoryModule::class,
+        AndroidInjectionModule::class
+))
 interface ApplicationComponent: AndroidInjector<DIApp> {
     // DIApp is the class that needs the dependencies, it is the consumer
 }
 
-
-/*
+/**
 *
 * Application Component
 * \
@@ -40,4 +41,10 @@ interface ApplicationComponent: AndroidInjector<DIApp> {
 *         Data Manger
 *
 *
-* **/
+*/
+
+
+/**
+ * Advice: Make use of Dagger2 Lazy<> especially in dependencies initialised in
+ * Application but used later.
+ */

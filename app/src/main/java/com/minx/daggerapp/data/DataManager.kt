@@ -2,7 +2,6 @@ package com.minx.daggerapp.data
 
 import android.content.Context
 import android.content.res.Resources
-import com.minx.daggerapp.di.qualifiers.ApplicationContext
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -13,7 +12,7 @@ import javax.inject.Singleton
  */
 @Singleton
 class DataManager @Inject
-constructor(@param:ApplicationContext private val mContext: Context,
+constructor(private val mContext: Context,
             private val mDbHelper: DbHelper,
             private val mSharedPrefsHelper: SharedPrefsHelper) {
 

@@ -3,13 +3,11 @@ package com.minx.daggerapp.data
 import android.content.ContentValues
 import android.content.Context
 import android.content.res.Resources
-import android.database.sqlite.SQLiteDatabase
 import android.database.Cursor
 import android.database.SQLException
-import javax.inject.Inject
+import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
-import com.minx.daggerapp.di.qualifiers.ApplicationContext
-import com.minx.daggerapp.di.qualifiers.DatabaseInfo
+import javax.inject.Inject
 import javax.inject.Singleton
 
 
@@ -18,9 +16,9 @@ import javax.inject.Singleton
  */
 @Singleton
 class DbHelper @Inject
-constructor(@ApplicationContext context: Context,
-            @DatabaseInfo dbName: String,
-            @DatabaseInfo version: Int) : SQLiteOpenHelper(context, dbName, null, version) {
+constructor(context: Context,
+            dbName: String,
+            version: Int) : SQLiteOpenHelper(context, dbName, null, version) {
 
     private val currentTimeStamp: String
         get() = (System.currentTimeMillis() / 1000).toString()
